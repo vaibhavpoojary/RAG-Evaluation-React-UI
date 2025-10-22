@@ -3,7 +3,9 @@ import Sidebar from "@/components/Sidebar";
 import FileUploadCard from "@/components/FileUploadCard";
 import MetricCard from "@/components/MetricCard";
 import EvaluationSettings from "@/components/EvaluationSettings";
-import { FileText, Search, Target, Database, Settings2, Beaker } from "lucide-react";
+import ApiDocsCard from "@/components/ApiDocsCard";
+import EvaluationHistory from "@/components/EvaluationHistory";
+import { FileText, Search, Target, Database, Settings2, Beaker, Code } from "lucide-react";
 
 const Index = () => {
   const [activeTab, setActiveTab] = useState("home");
@@ -28,6 +30,9 @@ const Index = () => {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
             {/* File Upload Section */}
             <div className="lg:col-span-2 space-y-6">
+              {/* API Documentation */}
+              <ApiDocsCard />
+              
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <FileUploadCard
                   title="Corpus File"
@@ -66,7 +71,7 @@ const Index = () => {
               <div className="mt-8">
                 <div className="mb-6">
                   <h2 className="text-2xl font-bold text-foreground mb-2">Dashboard</h2>
-                  <p className="text-muted-foreground">High-level overview of the evaluation results</p>
+                  <p className="text-muted-foreground">High-level overview of the evaluation results (RAGAS metrics)</p>
                 </div>
 
                 <div className="space-y-6">
@@ -105,28 +110,28 @@ const Index = () => {
                   <div>
                     <h3 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
                       <Beaker className="w-5 h-5 text-primary" />
-                      LLM Judge Metrics (G-C-A)
+                      LLM Judge Metrics (RAGAS Framework)
                     </h3>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                       <MetricCard
-                        title="Context Relevance (CR)"
+                        title="Context Precision"
                         subtitle="Relevance score"
                         value="70.00%"
-                        description="This metric assesses the quality of the retrieved context - is it relevant for the query?"
+                        description="Measures the relevance of retrieved contexts to the question. Higher scores indicate better retrieval quality."
                         color="orange"
                       />
                       <MetricCard
-                        title="Faithfulness (AIC)"
-                        subtitle="Answer accuracy"
+                        title="Faithfulness"
+                        subtitle="Answer grounding"
                         value="60.00%"
-                        description="Are the answers grounded in the provided context? Faithfulness ensures no hallucination or fabricated information."
+                        description="Evaluates whether the answer is grounded in the provided context without hallucinations. Critical for trustworthy AI."
                         color="teal"
                       />
                       <MetricCard
-                        title="Answer Relevance (AR)"
+                        title="Answer Relevancy"
                         subtitle="Response quality"
                         value="85.00%"
-                        description="Does the answer actually address the question asked? High scores mean the answer is on-topic."
+                        description="Assesses whether the answer actually addresses the question asked. High scores mean the answer is on-topic."
                         color="purple"
                       />
                     </div>
@@ -135,9 +140,10 @@ const Index = () => {
               </div>
             </div>
 
-            {/* Evaluation Settings Sidebar */}
-            <div className="lg:col-span-1">
+            {/* Right Sidebar */}
+            <div className="lg:col-span-1 space-y-6">
               <EvaluationSettings />
+              <EvaluationHistory />
             </div>
           </div>
         </div>

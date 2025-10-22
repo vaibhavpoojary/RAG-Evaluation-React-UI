@@ -14,13 +14,160 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      evaluation_files: {
+        Row: {
+          created_at: string
+          evaluation_id: string | null
+          file_data: Json
+          file_name: string
+          file_type: string
+          id: string
+        }
+        Insert: {
+          created_at?: string
+          evaluation_id?: string | null
+          file_data: Json
+          file_name: string
+          file_type: string
+          id?: string
+        }
+        Update: {
+          created_at?: string
+          evaluation_id?: string | null
+          file_data?: Json
+          file_name?: string
+          file_type?: string
+          id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "evaluation_files_evaluation_id_fkey"
+            columns: ["evaluation_id"]
+            isOneToOne: false
+            referencedRelation: "evaluations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      evaluation_results: {
+        Row: {
+          answer: string
+          answer_relevancy: number | null
+          context_precision: number | null
+          context_recall: number | null
+          contexts: Json
+          created_at: string
+          evaluation_id: string
+          faithfulness: number | null
+          ground_truth: string | null
+          id: string
+          query_index: number
+          question: string
+        }
+        Insert: {
+          answer: string
+          answer_relevancy?: number | null
+          context_precision?: number | null
+          context_recall?: number | null
+          contexts?: Json
+          created_at?: string
+          evaluation_id: string
+          faithfulness?: number | null
+          ground_truth?: string | null
+          id?: string
+          query_index: number
+          question: string
+        }
+        Update: {
+          answer?: string
+          answer_relevancy?: number | null
+          context_precision?: number | null
+          context_recall?: number | null
+          contexts?: Json
+          created_at?: string
+          evaluation_id?: string
+          faithfulness?: number | null
+          ground_truth?: string | null
+          id?: string
+          query_index?: number
+          question?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "evaluation_results_evaluation_id_fkey"
+            columns: ["evaluation_id"]
+            isOneToOne: false
+            referencedRelation: "evaluations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      evaluations: {
+        Row: {
+          answer_relevancy: number | null
+          completed_at: string | null
+          context_precision: number | null
+          context_recall: number | null
+          created_at: string
+          description: string | null
+          faithfulness: number | null
+          id: string
+          metadata: Json | null
+          model_name: string | null
+          model_provider: string | null
+          name: string
+          status: string
+          top_k: number | null
+          total_queries: number | null
+          updated_at: string
+        }
+        Insert: {
+          answer_relevancy?: number | null
+          completed_at?: string | null
+          context_precision?: number | null
+          context_recall?: number | null
+          created_at?: string
+          description?: string | null
+          faithfulness?: number | null
+          id?: string
+          metadata?: Json | null
+          model_name?: string | null
+          model_provider?: string | null
+          name: string
+          status?: string
+          top_k?: number | null
+          total_queries?: number | null
+          updated_at?: string
+        }
+        Update: {
+          answer_relevancy?: number | null
+          completed_at?: string | null
+          context_precision?: number | null
+          context_recall?: number | null
+          created_at?: string
+          description?: string | null
+          faithfulness?: number | null
+          id?: string
+          metadata?: Json | null
+          model_name?: string | null
+          model_provider?: string | null
+          name?: string
+          status?: string
+          top_k?: number | null
+          total_queries?: number | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      calculate_evaluation_metrics: {
+        Args: { eval_id: string }
+        Returns: undefined
+      }
     }
     Enums: {
       [_ in never]: never

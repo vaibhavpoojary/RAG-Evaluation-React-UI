@@ -1,1 +1,10 @@
 project_id = "invhposqpwwmllhbuobl"
+
+[functions.evaluate]
+verify_jwt = false
+
+[functions.get-evaluation]
+verify_jwt = false
+
+[functions.list-evaluations]
+verify_jwt = false
