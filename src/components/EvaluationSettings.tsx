@@ -3,9 +3,37 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
-import { Settings } from "lucide-react";
+import { Settings, Loader2 } from "lucide-react";
+import { useState } from "react";
 
-const EvaluationSettings = () => {
+interface EvaluationSettingsProps {
+  onRunEvaluation?: (settings: {
+    topK: number;
+    modelProvider: string;
+    modelName: string;
+    apiKey: string;
+    seed: number;
+  }) => void;
+  isRunning?: boolean;
+}
+
+const EvaluationSettings = ({ onRunEvaluation, isRunning = false }: EvaluationSettingsProps) => {
+  const [topK, setTopK] = useState(5);
+  const [modelProvider, setModelProvider] = useState("openai");
+  const [modelName, setModelName] = useState("gpt-4o-mini");
+  const [apiKey, setApiKey] = useState("OPENAI_API_KEY");
+  const [seed, setSeed] = useState(42);
+
+  const handleRunEvaluation = () => {
+    onRunEvaluation?.({
+      topK,
+      modelProvider,
+      modelName,
+      apiKey,
+      seed,
+    });
+  };
+
   return (
     <Card className="border-border">
       <CardHeader>
@@ -17,12 +45,18 @@ const EvaluationSettings = () => {
       <CardContent className="space-y-4">
         <div className="space-y-2">
           <Label htmlFor="test-k">Top K</Label>
-          <Input id="test-k" type="number" defaultValue="5" className="bg-background" />
+          <Input 
+            id="test-k" 
+            type="number" 
+            value={topK}
+            onChange={(e) => setTopK(Number(e.target.value))}
+            className="bg-background" 
+          />
         </div>
         
         <div className="space-y-2">
           <Label htmlFor="model-provider">Model Provider</Label>
-          <Select defaultValue="openai">
+          <Select value={modelProvider} onValueChange={setModelProvider}>
             <SelectTrigger id="model-provider" className="bg-background">
               <SelectValue />
             </SelectTrigger>
@@ -36,7 +70,7 @@ const EvaluationSettings = () => {
 
         <div className="space-y-2">
           <Label htmlFor="model-name">Model Name</Label>
-          <Select defaultValue="gpt-4o-mini">
+          <Select value={modelName} onValueChange={setModelName}>
             <SelectTrigger id="model-name" className="bg-background">
               <SelectValue />
             </SelectTrigger>
@@ -50,16 +84,38 @@ const EvaluationSettings = () => {
 
         <div className="space-y-2">
           <Label htmlFor="api-key">API Key Environment Variable</Label>
-          <Input id="api-key" defaultValue="OPENAI_API_KEY" className="bg-background" />
+          <Input 
+            id="api-key" 
+            value={apiKey}
+            onChange={(e) => setApiKey(e.target.value)}
+            className="bg-background" 
+          />
         </div>
 
         <div className="space-y-2">
           <Label htmlFor="seed">Seed</Label>
-          <Input id="seed" type="number" defaultValue="42" className="bg-background" />
+          <Input 
+            id="seed" 
+            type="number" 
+            value={seed}
+            onChange={(e) => setSeed(Number(e.target.value))}
+            className="bg-background" 
+          />
         </div>
 
-        <Button className="w-full bg-primary hover:bg-primary/90">
-          Run Evaluation
+        <Button 
+          className="w-full bg-primary hover:bg-primary/90"
+          onClick={handleRunEvaluation}
+          disabled={isRunning}
+        >
+          {isRunning ? (
+            <>
+              <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+              Running...
+            </>
+          ) : (
+            "Run Evaluation"
+          )}
         </Button>
       </CardContent>
     </Card>
