@@ -15,3 +15,6 @@ npm i
 # Step 4: Start the development server with auto-reloading and an instant preview.
 npm run dev
 ```
+
+<img width="1528" height="902" alt="image" src="https://github.com/user-attachments/assets/f05c36af-60a0-4e23-bbdd-0f81f7769d91" />
+<img width="1532" height="899" alt="image" src="https://github.com/user-attachments/assets/9397aa18-ff5d-4b1b-9198-d4651a55f129" />
