@@ -3,7 +3,7 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
-import { Settings, Loader2 } from "lucide-react";
+import { Settings, Loader2, Beaker } from "lucide-react";
 import { useState } from "react";
 
 interface EvaluationSettingsProps {
@@ -35,14 +35,16 @@ const EvaluationSettings = ({ onRunEvaluation, isRunning = false }: EvaluationSe
   };
 
   return (
-    <Card className="border-border">
+    <Card className="border-border shadow-md hover:shadow-lg transition-shadow">
       <CardHeader>
-        <CardTitle className="flex items-center gap-2">
-          <Settings className="w-5 h-5 text-primary" />
-          Evaluation Settings
+        <CardTitle className="flex items-center gap-2 text-lg">
+          <div className="p-2 rounded-lg bg-primary/10">
+            <Settings className="w-5 h-5 text-primary" />
+          </div>
+          <span>Evaluation Settings</span>
         </CardTitle>
       </CardHeader>
-      <CardContent className="space-y-4">
+      <CardContent className="space-y-5">
         <div className="space-y-2">
           <Label htmlFor="test-k">Top K</Label>
           <Input 
@@ -104,7 +106,8 @@ const EvaluationSettings = ({ onRunEvaluation, isRunning = false }: EvaluationSe
         </div>
 
         <Button 
-          className="w-full bg-primary hover:bg-primary/90"
+          className="w-full bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 shadow-primary"
+          size="lg"
           onClick={handleRunEvaluation}
           disabled={isRunning}
         >
@@ -114,7 +117,10 @@ const EvaluationSettings = ({ onRunEvaluation, isRunning = false }: EvaluationSe
               Running...
             </>
           ) : (
-            "Run Evaluation"
+            <>
+              <Beaker className="w-4 h-4 mr-2" />
+              Run Evaluation
+            </>
           )}
         </Button>
       </CardContent>

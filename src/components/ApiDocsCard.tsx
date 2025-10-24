@@ -54,11 +54,13 @@ print(f"Faithfulness: {data['evaluation']['metrics']['faithfulness']}")`,
   };
 
   return (
-    <Card className="border-border">
+    <Card className="border-border shadow-md hover:shadow-lg transition-shadow bg-gradient-to-br from-card to-card/80">
       <CardHeader>
-        <CardTitle className="flex items-center gap-2">
-          <Code className="w-5 h-5 text-primary" />
-          API Documentation
+        <CardTitle className="flex items-center gap-2 text-lg">
+          <div className="p-2 rounded-lg bg-primary/10">
+            <Code className="w-5 h-5 text-primary" />
+          </div>
+          <span>API Documentation</span>
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-6">
@@ -88,8 +90,8 @@ print(f"Faithfulness: {data['evaluation']['metrics']['faithfulness']}")`,
                 )}
               </Button>
             </div>
-            <pre className="bg-muted p-3 rounded text-xs overflow-x-auto">
-              <code>{example.code}</code>
+            <pre className="bg-gradient-to-br from-muted to-muted/80 p-4 rounded-lg text-xs overflow-x-auto border border-border/50">
+              <code className="font-mono">{example.code}</code>
             </pre>
           </div>
         ))}

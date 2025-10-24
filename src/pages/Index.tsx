@@ -10,6 +10,7 @@ import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { Badge } from "@/components/ui/badge";
 
 const Index = () => {
   const [activeTab, setActiveTab] = useState("home");
@@ -115,16 +116,34 @@ const Index = () => {
           </div>
           <div className="max-w-7xl mx-auto p-8">
           {/* Hero Section */}
-          <div className="relative bg-gradient-to-br from-primary via-primary to-accent rounded-2xl p-12 mb-8 text-center overflow-hidden">
-            <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0iZ3JpZCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNIDQwIDAgTCAwIDAgMCA0MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIwLjUiIG9wYWNpdHk9IjAuMSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmlkKSIvPjwvc3ZnPg==')] opacity-20"></div>
-            <div className="relative z-10">
-              <div className="inline-flex items-center justify-center w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl mb-6 shadow-lg">
-                <Sparkles className="w-8 h-8 text-white" />
+          <div className="relative bg-gradient-to-br from-primary via-primary/95 to-accent rounded-3xl p-12 mb-10 text-center overflow-hidden shadow-primary">
+            <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMS41IiBmaWxsPSJ3aGl0ZSIgb3BhY2l0eT0iMC4yIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyaWQpIi8+PC9zdmc+')] opacity-30"></div>
+            <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>
+            <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent/20 rounded-full blur-3xl"></div>
+            <div className="relative z-10 animate-fade-in">
+              <div className="inline-flex items-center justify-center w-20 h-20 bg-white/15 backdrop-blur-md rounded-3xl mb-6 shadow-xl border border-white/20">
+                <Sparkles className="w-10 h-10 text-white animate-pulse" />
               </div>
-              <h1 className="text-5xl font-bold text-white mb-3 tracking-tight">RAG Evaluation Suite</h1>
-              <p className="text-white/90 text-lg max-w-2xl mx-auto">
+              <h1 className="text-6xl font-extrabold text-white mb-4 tracking-tight drop-shadow-lg">
+                RAG Evaluation Suite
+              </h1>
+              <p className="text-white/95 text-xl max-w-3xl mx-auto leading-relaxed font-medium">
                 Professional RAG performance analysis powered by RAGAS framework
               </p>
+              <div className="mt-8 flex items-center justify-center gap-6 text-sm text-white/80">
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 rounded-full bg-white/60"></div>
+                  <span>Real-time Evaluation</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 rounded-full bg-white/60"></div>
+                  <span>Multi-Metric Analysis</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 rounded-full bg-white/60"></div>
+                  <span>API Integration</span>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -132,10 +151,15 @@ const Index = () => {
             {/* Main Content */}
             <div className="lg:col-span-2 space-y-8">
               {/* File Upload Section */}
-              <div className="space-y-4">
+              <div className="space-y-6 animate-fade-in">
                 <div className="flex items-center justify-between">
-                  <h2 className="text-2xl font-bold text-foreground">Upload Dataset Files</h2>
-                  <span className="text-sm text-muted-foreground">RAGAS Format</span>
+                  <div>
+                    <h2 className="text-3xl font-bold text-foreground mb-1">Upload Dataset Files</h2>
+                    <p className="text-sm text-muted-foreground">Upload your evaluation data in RAGAS format</p>
+                  </div>
+                  <Badge variant="outline" className="text-xs font-medium">
+                    RAGAS Format
+                  </Badge>
                 </div>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -171,10 +195,10 @@ const Index = () => {
               </div>
 
               {/* Dashboard Section */}
-              <div>
-                <div className="mb-6">
-                  <h2 className="text-2xl font-bold text-foreground mb-2">Evaluation Metrics</h2>
-                  <p className="text-muted-foreground">
+              <div className="animate-fade-in">
+                <div className="mb-8">
+                  <h2 className="text-3xl font-bold text-foreground mb-2">Evaluation Metrics</h2>
+                  <p className="text-muted-foreground text-sm">
                     {latestEvaluation ? `Latest evaluation: ${latestEvaluation.name}` : 'Run your first evaluation to see metrics'}
                   </p>
                 </div>

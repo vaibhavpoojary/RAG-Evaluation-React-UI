@@ -41,11 +41,13 @@ const EvaluationHistory = () => {
   }
 
   return (
-    <Card className="border-border">
+    <Card className="border-border shadow-md hover:shadow-lg transition-shadow">
       <CardHeader>
-        <CardTitle className="flex items-center gap-2">
-          <History className="w-5 h-5 text-primary" />
-          Recent Evaluations
+        <CardTitle className="flex items-center gap-2 text-lg">
+          <div className="p-2 rounded-lg bg-primary/10">
+            <History className="w-5 h-5 text-primary" />
+          </div>
+          <span>Recent Evaluations</span>
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-3">
@@ -57,7 +59,7 @@ const EvaluationHistory = () => {
           evaluations.map((evaluation) => (
             <div
               key={evaluation.id}
-              className="p-4 border border-border rounded-lg hover:bg-accent/50 transition-colors cursor-pointer"
+              className="p-4 border border-border rounded-xl hover:bg-gradient-to-br hover:from-muted/30 hover:to-muted/10 hover:border-primary/30 hover:shadow-md transition-all cursor-pointer"
             >
               <div className="flex items-start justify-between mb-2">
                 <div className="flex-1">
